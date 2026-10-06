@@ -15,6 +15,7 @@ export async function proxy(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!login|privasi|api/auth|api/cron|_next/static|_next/image|favicon.ico|icon|apple-icon|manifest.webmanifest|logos.json).*)",
+    // google*.html = file verifikasi kepemilikan situs dari Google Search Console.
+    "/((?!login|privasi|google[0-9a-f]+\\.html|brand/|api/auth|api/cron|_next/static|_next/image|favicon.ico|icon|apple-icon|manifest.webmanifest|logos.json).*)",
   ],
 };
