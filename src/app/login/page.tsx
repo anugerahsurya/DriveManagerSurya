@@ -4,7 +4,14 @@ import { LockClock } from "@/components/lock-clock";
 import { AppIcon } from "@/components/shell/app-icon";
 import { getOwner } from "@/lib/session";
 
-export const metadata = { title: "Masuk" };
+// Halaman ini juga menjadi beranda publik (proxy me-rewrite "/" ke sini saat belum login),
+// jadi nama aplikasinya harus sama persis dengan nama di layar izin Google.
+export const metadata = {
+  title: { absolute: "Drive Manager Surya" },
+  description:
+    "Drive Manager Surya: aplikasi pribadi Anugerah Surya Atmaja untuk memantau kuota penyimpanan beberapa akun Google Drive.",
+  robots: { index: true, follow: true },
+};
 
 const ERRORS: Record<string, string> = {
   not_allowed: "Akun GitHub ini tidak punya akses. Hanya akun induk yang bisa masuk.",
@@ -22,10 +29,14 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
     <main className="relative flex min-h-dvh flex-col items-center px-6 pt-[max(56px,env(safe-area-inset-top))] pb-[max(32px,env(safe-area-inset-bottom))] [background-image:radial-gradient(70%_60%_at_15%_5%,var(--wall-a),transparent_70%),radial-gradient(60%_60%_at_95%_95%,var(--wall-b),transparent_70%),radial-gradient(45%_45%_at_70%_25%,var(--wall-c),transparent_70%)]">
       <LockClock />
 
-      <div className="window-open mt-auto mb-auto flex w-full max-w-[300px] flex-col items-center pt-10 text-center">
+      <div className="window-open mt-auto mb-auto flex w-full max-w-[340px] flex-col items-center pt-10 text-center">
         <AppIcon kind="overview" size={88} />
-        <h1 className="mt-5 text-[22px] font-bold">Drive Manager</h1>
-        <p className="mt-1 text-[14px] text-ink-2">Masuk dengan akun GitHub induk.</p>
+        <h1 className="mt-5 text-[22px] font-bold">Drive Manager Surya</h1>
+        <p className="mt-2 text-[14px] text-ink-2">
+          Aplikasi pribadi Anugerah Surya Atmaja untuk memantau kuota penyimpanan beberapa akun Google Drive dalam satu
+          tempat. Aplikasi hanya membaca angka kuota, tidak membuka file.
+        </p>
+        <p className="mt-3 text-[13px] font-semibold">Masuk dengan akun GitHub induk.</p>
 
         <a
           href="/api/auth/github"

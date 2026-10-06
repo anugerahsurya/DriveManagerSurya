@@ -11,7 +11,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Drive Manager", template: "%s · Drive Manager" },
+  title: { default: "Drive Manager Surya", template: "%s · Drive Manager Surya" },
   description: "Pantau penyimpanan semua akun Google Drive, dan simpan password akun dalam brankas terenkripsi.",
   appleWebApp: { capable: true, title: "Drive", statusBarStyle: "default" },
   robots: { index: false, follow: false },

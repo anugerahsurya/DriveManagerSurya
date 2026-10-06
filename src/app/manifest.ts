@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Drive Manager",
+    name: "Drive Manager Surya",
     short_name: "Drive",
     description: "Pantau penyimpanan semua akun Google Drive.",
     start_url: "/",

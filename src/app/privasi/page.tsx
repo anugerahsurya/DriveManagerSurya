@@ -84,7 +84,7 @@ export default function PrivacyPage() {
 
         <p className="mt-6 text-center text-[13px]">
           <Link href="/" className="text-accent">
-            Kembali ke Drive Manager
+            Kembali ke Drive Manager Surya
           </Link>
         </p>
       </article>

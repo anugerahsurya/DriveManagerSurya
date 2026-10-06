@@ -28,7 +28,7 @@ export function MenuBar({ owner, theme }: { owner: Owner; theme: "light" | "dark
     <header className="fixed inset-x-0 top-0 z-20 hidden h-7 items-center justify-between bg-[var(--menubar)] px-4 text-[13px] shadow-[0_0.5px_0_var(--hairline)] backdrop-blur-2xl backdrop-saturate-150 lg:flex">
       <div className="flex items-center gap-5">
         <PiHardDrivesFill aria-hidden className="size-4" />
-        <span className="font-bold">Drive Manager</span>
+        <span className="font-bold">Drive Manager Surya</span>
         <span className="text-ink-2">{section}</span>
       </div>
       <div className="flex items-center gap-1">

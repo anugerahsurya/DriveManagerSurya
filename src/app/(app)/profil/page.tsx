@@ -46,7 +46,7 @@ export default async function ProfilePage() {
           </h2>
           <ProfileList accounts={accounts} />
           <p className="mt-2 px-1 text-[12px] text-ink-2">
-            Nama panggilan dan avatar hanya berlaku di Drive Manager; akun Google Anda tidak diubah.
+            Nama panggilan dan avatar hanya berlaku di Drive Manager Surya; akun Google Anda tidak diubah.
           </p>
         </section>
 

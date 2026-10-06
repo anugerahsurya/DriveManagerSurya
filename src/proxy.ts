@@ -8,6 +8,11 @@ export async function proxy(req: NextRequest) {
   if (req.nextUrl.pathname.startsWith("/api/")) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
+  // Beranda publik: "/" menampilkan halaman masuk tanpa redirect, supaya pemeriksa
+  // branding Google bisa membaca nama aplikasi dan link privasi langsung di URL beranda.
+  if (req.nextUrl.pathname === "/") {
+    return NextResponse.rewrite(new URL("/login", req.url));
+  }
   const res = NextResponse.redirect(new URL("/login", req.url));
   res.cookies.delete(SESSION_COOKIE);
   return res;
