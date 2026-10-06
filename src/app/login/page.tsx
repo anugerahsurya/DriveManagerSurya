@@ -39,7 +39,12 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
         </p>
       </div>
 
-      <p className="text-[12px] text-ink-2">Data hanya untuk pemilik. Password dienkripsi di HP Anda.</p>
+      <p className="text-[12px] text-ink-2">
+        Data hanya untuk pemilik. Password dienkripsi di HP Anda. ·{" "}
+        <a href="/privasi" className="underline underline-offset-2">
+          Kebijakan Privasi
+        </a>
+      </p>
     </main>
   );
 }
