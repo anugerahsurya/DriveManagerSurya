@@ -1,26 +1,396 @@
 @import "tailwindcss";
 
+/* Default terang. Gelap hanya bila pengguna memilihnya (data-theme="dark"). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  --wallpaper: #e7ebf1;
+  --wall-a: #c9daf2;
+  --wall-b: #f2dccb;
+  --wall-c: #d9e8dc;
+
+  --window: #ffffff;
+  --content: #f5f5f7;
+  --group: #ffffff;
+  --sidebar: rgb(236 238 242 / 0.72);
+  --menubar: rgb(246 247 249 / 0.7);
+  --dock: rgb(246 247 249 / 0.62);
+  --field: #ffffff;
+  --control: #ffffff;
+  --hover: rgb(0 0 0 / 0.045);
+  --press: rgb(0 0 0 / 0.08);
+
+  --text: #1d1d1f;
+  --text-2: #55555c;
+  --text-3: #6e6e75;
+  --separator: rgb(60 60 67 / 0.13);
+  --hairline: rgb(0 0 0 / 0.1);
+
+  --accent: #0a66d6;
+  --accent-hover: #0858bb;
+  --accent-soft: rgb(10 102 214 / 0.1);
+  --on-accent: #ffffff;
+  --focus: rgb(10 102 214 / 0.45);
+
+  --critical: #d70015;
+  --warning: #a05a00;
+  --good: #1b7f3b;
+  --track: #e4e4e8;
+
+  /* Palet kategorikal tervalidasi (dataviz) — warna mengikuti akun, bukan peringkat. */
+  --s0: #2a78d6;
+  --s1: #eb6834;
+  --s2: #1baf7a;
+  --s3: #eda100;
+  --s4: #e87ba4;
+  --s5: #008300;
+  --s6: #4a3aa7;
+  --s7: #e34948;
+  --s-other: #a1a1a8;
+
+  --shadow-window: 0 0 0 0.5px rgb(0 0 0 / 0.18), 0 22px 70px -12px rgb(30 40 60 / 0.32), 0 8px 22px -8px rgb(30 40 60 / 0.18);
+  --shadow-pop: 0 0 0 0.5px rgb(0 0 0 / 0.12), 0 12px 32px -6px rgb(30 40 60 / 0.24);
+  --shadow-control: 0 0 0 0.5px rgb(0 0 0 / 0.14), 0 1px 1.5px rgb(0 0 0 / 0.08);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --wallpaper: #1b1f27;
+  --wall-a: #23324a;
+  --wall-b: #3a2b2a;
+  --wall-c: #213129;
+
+  --window: #1f1f22;
+  --content: #1c1c1e;
+  --group: #2a2a2d;
+  --sidebar: rgb(40 41 46 / 0.74);
+  --menubar: rgb(30 31 35 / 0.66);
+  --dock: rgb(40 41 46 / 0.6);
+  --field: #1c1c1e;
+  --control: #3a3a3d;
+  --hover: rgb(255 255 255 / 0.06);
+  --press: rgb(255 255 255 / 0.1);
+
+  --text: #f5f5f7;
+  --text-2: #b0b0b7;
+  --text-3: #8b8b93;
+  --separator: rgb(255 255 255 / 0.1);
+  --hairline: rgb(255 255 255 / 0.12);
+
+  --accent: #3d8bf0;
+  --accent-hover: #5a9ef3;
+  --accent-soft: rgb(61 139 240 / 0.16);
+  --focus: rgb(61 139 240 / 0.55);
+
+  --critical: #ff6961;
+  --warning: #f0b030;
+  --good: #4cc76e;
+  --track: #3a3a3e;
+
+  --s0: #3987e5;
+  --s1: #d95926;
+  --s2: #199e70;
+  --s3: #c98500;
+  --s4: #d55181;
+  --s5: #008300;
+  --s6: #9085e9;
+  --s7: #e66767;
+  --s-other: #6e6e76;
+
+  --shadow-window: 0 0 0 0.5px rgb(255 255 255 / 0.14), 0 22px 70px -12px rgb(0 0 0 / 0.6);
+  --shadow-pop: 0 0 0 0.5px rgb(255 255 255 / 0.12), 0 12px 32px -6px rgb(0 0 0 / 0.5);
+  --shadow-control: 0 0 0 0.5px rgb(255 255 255 / 0.1), 0 1px 1.5px rgb(0 0 0 / 0.3);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --color-window: var(--window);
+  --color-content: var(--content);
+  --color-group: var(--group);
+  --color-field: var(--field);
+  --color-control: var(--control);
+  --color-hover: var(--hover);
+  --color-press: var(--press);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-ink-3: var(--text-3);
+  --color-sep: var(--separator);
+  --color-hairline: var(--hairline);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-critical: var(--critical);
+  --color-warning: var(--warning);
+  --color-good: var(--good);
+  --color-track: var(--track);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--wallpaper);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.45;
+  font-feature-settings: "ss01" 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 14px;
+    /* Wallpaper statis: tiga gradien radial, tidak dianimasikan. */
+    background-image:
+      radial-gradient(60% 70% at 12% 8%, var(--wall-a), transparent 70%),
+      radial-gradient(55% 60% at 92% 96%, var(--wall-b), transparent 70%),
+      radial-gradient(40% 50% at 70% 20%, var(--wall-c), transparent 70%);
+    background-attachment: fixed;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+  border-radius: 6px;
+}
+
+input,
+textarea {
+  caret-color: var(--accent);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbar tipis ala macOS */
+.scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--text) 22%, transparent) transparent;
+}
+
+/* ---------- Komponen dasar ---------- */
+
+.press {
+  transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out);
+}
+.press:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Grup ala System Settings */
+.group-box {
+  background: var(--group);
+  border-radius: 12px;
+  box-shadow: 0 0 0 0.5px var(--hairline);
+  overflow: clip;
+}
+.group-box > * + * {
+  border-top: 0.5px solid var(--separator);
+}
+.group-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 8px 14px;
+}
+@media (min-width: 768px) {
+  .group-row {
+    min-height: 42px;
+    padding: 7px 12px;
+  }
+}
+a.group-row,
+button.group-row {
+  width: 100%;
+  text-align: left;
+  transition: background-color 120ms var(--ease-out);
+}
+@media (hover: hover) {
+  a.group-row:hover,
+  button.group-row:hover {
+    background: var(--hover);
+  }
+}
+a.group-row:active,
+button.group-row:active {
+  background: var(--press);
+}
+
+.group-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+  padding: 0 4px 6px;
+}
+
+/* Tombol ala macOS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  background: var(--control);
+  color: var(--text);
+  box-shadow: var(--shadow-control);
+  transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out), opacity 140ms;
+}
+@media (min-width: 768px) {
+  .btn {
+    min-height: 30px;
+    padding: 0 12px;
+    font-size: 13px;
+    border-radius: 7px;
+  }
+}
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.btn:disabled {
+  opacity: 0.5;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 0 0 0.5px rgb(0 0 0 / 0.12), 0 1px 2px rgb(10 60 140 / 0.25), inset 0 1px 0 rgb(255 255 255 / 0.18);
+}
+@media (hover: hover) {
+  .btn-primary:hover:not(:disabled) {
+    background: var(--accent-hover);
+  }
+}
+.btn-danger {
+  color: var(--critical);
+}
+.btn-plain {
+  background: transparent;
+  box-shadow: none;
+  color: var(--accent);
+  padding: 0 8px;
+}
+@media (hover: hover) {
+  .btn-plain:hover {
+    background: var(--hover);
+  }
+}
+
+.field {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--field);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+  transition: box-shadow 140ms var(--ease-out);
+  font-size: 16px; /* cegah zoom otomatis iOS */
+}
+@media (min-width: 768px) {
+  .field {
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 7px;
+  }
+}
+.field::placeholder {
+  color: var(--text-3);
+}
+.field:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--accent), 0 0 0 3.5px var(--focus);
+}
+
+/* ---------- Gerak ---------- */
+
+/* Satu momen utama: jendela terbuka seperti macOS saat aplikasi pertama dimuat. */
+@keyframes window-open {
+  from {
+    opacity: 0;
+    transform: scale(0.965) translateY(6px);
+  }
+}
+.window-open {
+  animation: window-open 420ms var(--ease-out) both;
+}
+
+/* Bar penyimpanan terisi dari kiri, sekali. */
+@keyframes bar-fill {
+  from {
+    clip-path: inset(0 100% 0 0 round 6px);
+  }
+}
+.bar-fill {
+  animation: bar-fill 900ms var(--ease-out) 120ms both;
+}
+
+/* Getar layar login macOS saat password salah. */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-9px); }
+  30% { transform: translateX(8px); }
+  45% { transform: translateX(-6px); }
+  60% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+  90% { transform: translateX(2px); }
+}
+.shake {
+  animation: shake 480ms var(--ease-out);
+}
+
+/* Ikon Dock memantul sekali saat dibuka. */
+@keyframes dock-bounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-14px); }
+  55% { transform: translateY(0); }
+  72% { transform: translateY(-5px); }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+.pop-in {
+  animation: pop-in 180ms var(--ease-out) both;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spin {
+  animation: spin 900ms linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+  .spin {
+    animation: none;
+  }
 }

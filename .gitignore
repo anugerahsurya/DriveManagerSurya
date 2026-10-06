@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# data lokal development
+/.data
+/.impeccable/decision-payload.json
+!.env.example
